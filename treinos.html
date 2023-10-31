@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Fit Net - Pedrinho</title>
+  <link href="css/animate.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="images/logo.png">
+</head>
+
+<body>
+  <div class="content">
+    <div class="container-fluid pl-0 pr-0 bg-img clearfix parallax-window2" data-parallax="scroll"
+      data-image-src="images/banner2.jpg">
+      <nav class="navbar navbar-expand-md navbar-dark">
+        <div class="container">
+          <a class="navbar-brand mr-auto" href="#"><img src="images/logo.png" alt="FitNet" /></a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <span
+              class="navbar-toggler-icon"></span> </button>
+
+          <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item"> <a class="nav-link" href="index.html">Home</a> </li>
+              <li class="nav-item"> <a class="nav-link" href="perfil.html">Calcular IMC</a> </li>
+              <li class="nav-item"> <a class="nav-link" href="treinos.html">Treinos</a> </li>
+              <li class="nav-item"> <a class="nav-link" href="login.html">Sair</a> </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container content-container">
+        <h1>Escolha seus Treinos Personalizados</h1>
+
+        <!-- Botões ilustrados para selecionar categoria -->
+        <div class="category-buttons">
+          <button class="category-button" onclick="selecionarCategoria(1)">
+            <img
+              src="https://treinomestre.com.br/wp-content/uploads/2014/02/treino-de-peito-triceps-e-ombro-com-halteres-em-casa-.jpg"
+              alt="Categoria 1" width="200">
+            <p>Peitoral, Tríceps e Ombro</p>
+          </button>
+          <button class="category-button" onclick="selecionarCategoria(2)">
+            <img
+              src="https://treinomestre.com.br/wp-content/uploads/2017/11/treino-de-costas-biceps-e-antebra%C3%A7os-.jpg"
+              alt="Categoria 2" width="200">
+            <p>Costas, Abdômen e Bíceps</p>
+          </button>
+          <button class="category-button" onclick="selecionarCategoria(3)">
+            <img src="https://grandeatleta.com.br/wp-content/uploads/2020/10/quadriceps-exercicios-treino.jpg.webp"
+              alt="Categoria 3" width="200">
+            <p>Inferiores, Pernas e Glúteo</p>
+          </button>
+        </div>
+
+        <!-- Categorias de Treino -->
+        <div class="category" id="categoria1" style="display: none; font-family: Georgia;">
+          <h2>Peitoral, Tríceps e Ombro</h2>
+          <ul>
+            <li>
+              <input type="checkbox" name="exercise" value="exercise1"> Supino Reto
+              <p>
+                Tipo: Peitoral<br>
+                Este exercício visa fortalecer os músculos do peitoral, proporcionando um peito mais definido. É
+                realizado com halteres ou barra. <br>
+                10-12 Repetições e 3 Séries
+              </p>
+            </li>
+            <li>
+              <input type="checkbox" name="exercise" value="exercise2"> Supino Inclinado
+              <p>
+                Tipo: Peitoral<br>
+                Outro exercício eficaz para o tórax, que também trabalha os tríceps. É frequentemente
+                realizado com barra.<br>
+                10-12 Repetições e 3 Séries
+              </p>
+            </li>
+            <li>
+              <input type="checkbox" name="exercise" value="exercise3"> Tríceps Pulley
+              <p>
+                Tipo: Tríceps<br>
+                Este exercício visa fortalecer os músculos do tríceps, ajudando a tonificar a parte de trás
+                dos braços. Deve ser feito na polia alta.<br>
+                10-12 Repetições e 3 Séries
+              </p>
+            </li>
+            <li>
+              <input type="checkbox" name="exercise" value="exercise4"> Tríceps Francês
+              <p>
+                Tipo: Tríceps<br>
+                Este exercício visa fortalecer os músculos do tríceps, ajudando a tonificar a parte de trás
+                dos braços. Pode ser feito com halteres ou na polia baixa.<br>
+                10-12 Repetições e 3 Séries
+              </p>
+            </li>
+            <li>
+              <input type="checkbox" name="exercise" value="exercise5"> Elevação Lateral
+              <p>
+                Tipo: Ombro<br>
+                Um exercício que fortalece o deltóide lateral, juntamente com o deltóide posterior e anterior. É
+                executado com halteres ou na polia baixa.<br>
+                10-12 Repetições e 3 Séries
+              </p>
+            </li>
+            <li>
+              <input type="checkbox" name="exercise" value="exercise5"> Elevação Frontal
+              <p>
+                Tipo: Ombro<br>
+                Um exercício que fortalece o deltóide anterior, juntamente com o deltóide lateral e posterior. É
+                executado com halteres ou na polia baixa.<br>
+                10-12 Repetições e 3 Séries
+              </p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="category" id="categoria2" style="display: none; font-family: Georgia;">
+          <h2>Costas, Abdômen e Bíceps</h2>
+          <ul>
+            <li>
+              <input type="checkbox" name="exercise" value="exercise6"> Remada Curvada
+              <p>
+                Tipo: Costas<br>
+                Com os pés paralelos, joelhos semiflexionados e coluna reta formando um ângulo de 45º,
+                realizar uma remada jogando os cotovelos para o alto com uma pegada supinada.<br>
+                10-12 Repetições e 3 Séries
+              </p>
+            </li>
+            <li>
+              <input type="checkbox" name="exercise" value="exercise7"> Puxada Aberta no Pulley
+              <p>
+                Tipo: Costas<br>
+                Sentado de frente para o aparelho pulley, realizar uma flexão de cotovelo,
+                levando a barra em direção ao queixo, e estendê-lo novamente, realizando assim o movimento completo.<br>
+                10-12 Repetições e 3 Séries
+              </p>
+            </li>
+            <li>
+              <input type="checkbox" name="exercise" value="exercise8"> Rosca na Barra
+              <p>
+                Tipo: Bíceps<br>
+                Segure a barra de forma que as suas mãos fiquem paralelas aos ombros,
+                em seguida, levante a barra até a altura dos ombros, ao mesmo tempo que flexiona os cotovelos.<br>
+                10-12 Repetições e 3 Séries
+              </p>
+            </li>
+            <li>
+              <input type="checkbox" name="exercise" value="exercise9"> Rosca Martelo com Halteres
+              <p>
+                Tipo: Bíceps<br>
+                Pegue um halter em cada mão e permaneça com os braços estendidos ao lado do corpo,
+                sem mexer os antebraços, você deve dobrar os cotovelos e levar os halteres próximo dos ombros.<br>
+                10-12 Repetições e 3 Séries
+              </p>
+            </li>
+            <li>
+              <input type="checkbox" name="exercise" value="exercise10"> Abdominal Reto
+              <p>
+                Tipo: Abdômen<br>
+                Comece na posição deitada de barriga para cima, com as pernas flexionadas.
+                Coloque as duas mãos atrás da cabeça. Então, contraia o abdome e eleve o tronco, tirando do chão apenas
+                as escápulas.<br>
+                20-25 Repetições e 3 Séries
+              </p>
+            </li>
+            <li>
+              <input type="checkbox" name="exercise" value="exercise10"> Abdominal Infra
+              <p>
+                Tipo: Abdômen<br>
+                Deitado de barriga para cima, com braços paralelos ao tronco, pernas elevadas e semiflexionadas,
+                contraia o abdomen para tirar os quadris do chão e leve os pés em direção ao teto.<br>
+                20-25 Repetições e 3 Séries
+              </p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="category" id="categoria3" style="display: none; font-family: Georgia;">
+          <h2>Posterior, Glúteo, Panturrilha e Quadríceps</h2>
+          <ul>
+            <li>
+              <input type="checkbox" name="exercise" value="exercise11"> Cadeira Flexora
+              <p>
+                Tipo: Posterior<br>
+                Sente-se na máquina de cadeira flexora, com as costas retas e os pés apoiados nos pedais.
+                Ajuste a posição do apoio de tornozelo de acordo com a altura de seus joelhos, garantindo que ele esteja
+                posicionado logo acima dos calcanhares.
+                Mantenha as pernas estendidas e os pés apoiados nos pedais. Inicie a flexão do joelho, puxando o apoio
+                de tornozelo para trás.<br>
+                10-12 Repetições e 3 Séries
+              </p>
+            </li>
+            <li>
+              <input type="checkbox" name="exercise" value="exercise12"> Stiff
+              <p>
+                Tipo: Posterior<br>
+                Segurando uma barra ou halteres à frente das coxas. Mantenha as pernas levemente flexionadas, as costas
+                retas e os ombros para trás.
+                Em seguida, incline o tronco para a frente, mantendo as pernas levemente dobradas, até sentir um
+                alongamento dos isquiotibiais.<br>
+                10-12 Repetições e 3 Séries
+              </p>
+            </li>
+            <li>
+              <input type="checkbox" name="exercise" value="exercise13"> Agachamento com Barra
+              <p>
+                Tipo: Glúteo<br>
+                Primeiro, coloque a barra de pesos em cima dos ombros (e não no pescoço), as palmas das mãos devem estar
+                voltadas para fora. Os pés devem ficar paralelos aos ombros e ligeiramente virados para fora.
+                Depois, flexione os joelhos lentamente, até que as coxas fiquem paralelas ao chão.<br>
+                10-12 Repetições e 3 Séries
+              </p>
+            </li>
+            <li>
+              <input type="checkbox" name="exercise" value="exercise14"> Levantamento Terra
+              <p>
+                Tipo: Glúteo<br>
+                Com os joelhos flexionados. Pegue a barra e puxe seu tronco para cima, impulsione seu quadril para
+                frente e
+                levante a barra com as duas mãos. Logo depois, vá abaixando a barra, mantendo-a o mais próximo possível
+                do corpo.<br>
+                10-12 Repetições e 3 Séries
+              </p>
+            </li>
+            <li>
+              <input type="checkbox" name="exercise" value="exercise15"> Elevação de Panturrilhação em Pé
+              <p>
+                Tipo: Panturrilha<br>
+                Ficar com a ponta dos pés sobre um caixote ou bloco de superfície resistente,
+                erguendo os calcanhares ao mesmo tempo. Depois, basta retornar à posição inicial, alongando
+                bastante.<br>
+                12-15 Repetições e 3 Séries
+              </p>
+            </li>
+            <li>
+              <input type="checkbox" name="exercise" value="exercise15"> Elevação de Panturrilhação Sentado
+              <p>
+                Tipo: Panturrilha<br>
+                Sentar com os pés apoiados no chão e posicionados na frente do corpo, mantendo as mãos apoiadas sobre as
+                coxas com
+                os cotovelos flexionados. Depois, basta elevar os calcanhares o mais alto que conseguir e voltar à
+                posição original.<br>
+                12-15 Repetições e 3 Séries
+              </p>
+            </li>
+            <li>
+              <input type="checkbox" name="exercise" value="exercise15"> Cadeira Extensora
+              <p>
+                Tipo: Quadríceps<br>
+                Sentado na cadeira, apoiar as pernas no apoio acolchoado do aparelho, mais ou menos na altura do
+                tornozelo.
+                Depois, estender os joelhos até contrair ao máximo o quadríceps, para depois flexioná-los e retornar
+                assim a posição inicial.<br>
+                10-12 Repetições e 3 Séries
+              </p>
+            </li>
+            <li>
+              <input type="checkbox" name="exercise" value="exercise15"> Leg Press
+              <p>
+                Tipo: Quadríceps<br>
+                Sentar no aparelho, colocar os dois pés na plataforma e destravar o aparelho,
+                depois empurrar a plataforma de forma a estender as duas pernas e depois flexioná-las novamente
+                retornando assim à posição inicial.<br>
+                10-12 Repetições e 3 Séries
+              </p>
+            </li>
+          </ul>
+        </div>
+
+        <div id="relatorio" style="display: none;">
+          <hr>
+          <h1>Relatório de Treinos</h1>
+          <ul id="treinosSelecionados">
+          </ul>
+          <button id="imprimir-button">Imprimir</button>
+          <button id="cancelar-button">Cancelar</button>
+        </div>
+
+        <button id="submit-button">Gerar treino</button>
+
+
+        <script>
+          function selecionarCategoria(categoria) {
+            document.querySelectorAll('.category').forEach(category => category.style.display = 'none');
+
+            document.getElementById('categoria' + categoria).style.display = 'block';
+          }
+        </script>
+      </div>
+    </div>
+    <footer>
+      <p>&copy; <span id="anoAtual"></span> pedrinhoo_art. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+      function selecionarCategoria(categoria) {
+        document.querySelectorAll('.category').forEach(category => category.style.display = 'none');
+
+        document.getElementById('categoria' + categoria).style.display = 'block';
+      }
+
+      const treinosSelecionados = [];
+      const relatorioDiv = document.getElementById('relatorio');
+      const treinosSelecionadosUl = document.getElementById('treinosSelecionados');
+
+      function adicionarTreinoSelecionado(checkbox) {
+        if (checkbox.checked) {
+          const descricao = checkbox.nextElementSibling.innerHTML;
+          treinosSelecionados.push(descricao);
+        } else {
+          const descricao = checkbox.nextElementSibling.innerHTML;
+          const index = treinosSelecionados.indexOf(descricao);
+          if (index !== -1) {
+            treinosSelecionados.splice(index, 1);
+          }
+        }
+      }
+
+      function gerarRelatorio() {
+        treinosSelecionadosUl.innerHTML = '';
+        for (const descricao of treinosSelecionados) {
+          const li = document.createElement('li');
+          li.innerHTML = descricao;
+          treinosSelecionadosUl.appendChild(li);
+        }
+        relatorioDiv.style.display = 'block';
+      }
+
+      function resetarTela() {
+        relatorioDiv.style.display = 'none';
+
+        checkboxes.forEach((checkbox) => {
+          checkbox.checked = false;
+        });
+
+        submitButton.style.display = 'block';
+      }
+
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener('change', () => {
+          adicionarTreinoSelecionado(checkbox);
+        });
+      });
+
+      const submitButton = document.getElementById('submit-button');
+      submitButton.addEventListener('click', () => {
+        if (treinosSelecionados.length === 0) {
+          alert('Selecione pelo menos um treino antes de gerar o relatório.');
+        } else {
+          gerarRelatorio();
+          submitButton.style.display = 'none';
+        }
+      });
+
+      const imprimirButton = document.getElementById('imprimir-button');
+      imprimirButton.addEventListener('click', () => {
+        window.print();
+      });
+
+      const cancelarButton = document.getElementById('cancelar-button');
+      cancelarButton.addEventListener('click', () => {
+        resetarTela();
+      });
+    </script>
+  </div>
+
+</body>
+
+</html>

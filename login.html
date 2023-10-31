@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Fit Net - Pedrinho</title>
+  <link href="css/animate.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="icon" href="images/logo.png">
+</head>
+
+<body>
+  <div class="container-fluid pl-0 pr-0 bg-img clearfix parallax-window2" data-parallax="scroll"
+    data-image-src="images/banner2.jpg">
+    <div class="box">
+      <div class="buttonsForm">
+        <div class="btnColor"></div>
+        <button id="btnSignin">Login</button>
+        <button id="btnSignup">Registrar</button>
+      </div>
+      <form id="signin" onsubmit="login(event)">
+        <input id="emailLogin" type="text" placeholder="Email" required />
+        <i class="fas fa-envelope iEmail"></i>
+        <input id="senhaLogin" type="password" placeholder="Senha" required />
+        <i class="fas fa-lock iPassword"></i>
+        <div class="divCheck">
+          <input type="checkbox" id="lembrarSenhaCheckbox" /> <!-- Adicione um ID ao checkbox -->
+          <span>Lembrar senha?</span>
+        </div>
+        <button type="submit">Login</button>
+      </form>
+      <form id="signup">
+        <input id="emailCadastro" type="text" placeholder="Email" required />
+        <i class="fas fa-envelope iEmail"></i>
+        <input id="senhaCadastro" type="password" placeholder="Senha" required />
+        <i class "fas fa-lock iPassword"></i>
+        <input id="confirmarSenha" type="password" placeholder="Confirmar senha" required />
+        <i class="fas fa-lock iPassword2"></i>
+        <div class="divCheck">
+          <input type="checkbox" required />
+          <span font color="#00000">Termos de responsabilidade</span>
+        </div>
+        <button type="submit" onclick="cadastrar()">Registrar-se</button>
+      </form>
+    </div>
+    <script src="index.js"></script>
+    <script>
+      window.onload = function () {
+        var emailField = document.getElementById("emailLogin");
+        var senhaField = document.getElementById("senhaLogin");
+        var lembrarSenhaCheckbox = document.getElementById("lembrarSenhaCheckbox");
+
+        if (localStorage.getItem("lembrarSenha") === "true") {
+          lembrarSenhaCheckbox.checked = true;
+          emailField.value = localStorage.getItem("email");
+          senhaField.value = localStorage.getItem("senha");
+        }
+
+        lembrarSenhaCheckbox.addEventListener("change", function () {
+          if (this.checked) {
+            localStorage.setItem("lembrarSenha", "true");
+          } else {
+            localStorage.removeItem("lembrarSenha");
+            localStorage.removeItem("email");
+            localStorage.removeItem("senha");
+          }
+        });
+      }
+
+      function cadastrar() {
+        var email = document.getElementById("emailCadastro").value;
+        var senha = document.getElementById("senhaCadastro").value;
+        var termos = document.getElementById("termosCadastro").value;
+        var confirmarSenha = document.getElementById("confirmarSenha").value;
+
+        if (email && termos && senha && senha === confirmarSenha) {
+          if (!localStorage.getItem(email)) {
+            localStorage.setItem(email, senha);
+            alert("Cadastro realizado com sucesso!");
+          } else {
+            alert("Este email já está cadastrado. Por favor, escolha outro.");
+          }
+        } else {
+          alert("Preencha todos os campos e confirme a senha corretamente.");
+        }
+      }
+
+      function login(event) {
+        event.preventDefault();
+        var email = document.getElementById("emailLogin").value;
+        var senha = document.getElementById("senhaLogin").value;
+        var lembrarSenhaCheckbox = document.getElementById("lembrarSenhaCheckbox");
+
+        if (localStorage.getItem(email) === senha) {
+          localStorage.setItem("email", email);
+          if (lembrarSenhaCheckbox.checked) {
+            localStorage.setItem("senha", senha);
+          } else {
+            localStorage.removeItem("senha");
+          }
+          window.location.href = "index.html";
+        } else {
+          alert("Credenciais inválidas. Tente novamente.");
+        }
+      }
+    </script>
+</body>
+
+</html>

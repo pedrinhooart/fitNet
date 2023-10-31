@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="pt">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Fit Net - Pedrinho</title>
+
+  <link href="css/animate.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="images/logo.png">
+
+</head>
+
+<body>
+  <div class="content">
+    <div class="container-fluid pl-0 pr-0 bg-img clearfix parallax-window2" data-parallax="scroll"
+      data-image-src="images/banner2.jpg">
+      <nav class="navbar navbar-expand-md navbar-dark">
+        <div class="container">
+          <a class="navbar-brand mr-auto" href="#"><img src="images/logo.png" alt="FitNet" /></a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <span
+              class="navbar-toggler-icon"></span> </button>
+
+          <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item"> <a class="nav-link" href="index.html">Home</a> </li>
+              <li class="nav-item"> <a class="nav-link" href="perfil.html">Calcular IMC</a> </li>
+              <li class="nav-item"> <a class="nav-link" href="treinos.html">Treinos</a> </li>
+              <li class="nav-item"> <a class="nav-link" href="login.html">Sair</a> </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container content-container">
+        <div>
+          <div id="chart-container">
+            <canvas id="line-chart"></canvas>
+          </div>
+
+          <div id="imc-calculator">
+            <h2 style="color: red;">Calculadora de IMC</h2>
+            <form>
+              <div class="form-group" style="color: red;">
+                <label for="peso">Peso (kg):</label>
+                <input type="number" id="peso" class="form-control" placeholder="Digite seu peso" required>
+              </div>
+              <div class="form-group" style="color: red;">
+                <label for="altura">Altura (m):</label>
+                <input type="number" step="0.01" id="altura" class="form-control" placeholder="Digite sua altura"
+                  required>
+              </div>
+              <button type="button" id="submit-button" onclick="calcularIMC()">Calcular IMC</button>
+            </form>
+            <div id="resultado-imc"></div>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <p>&copy; <span id="anoAtual"></span> pedrinhoo_art. Todos os direitos reservados.</p>
+      </footer>
+
+      <script>
+        var anoAtual = new Date().getFullYear();
+        document.getElementById("anoAtual").textContent = anoAtual;
+      </script>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/parallax.js"></script>
+    <script src="js/wow.js"></script>
+    <script src="js/main.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+      var imcData = [];
+      var myLineChart;
+
+      function initializeChart() {
+        var savedIMCs = JSON.parse(localStorage.getItem("imcsSalvos")) || [];
+        imcData = savedIMCs;
+
+        var data = {
+          labels: Array.from({ length: imcData.length }, (_, i) => (i + 1).toString()),
+          datasets: [{
+            label: "IMC",
+            data: imcData,
+            borderColor: "#930101",
+            fill: false,
+          }]
+        };
+
+        var options = {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: [{
+              scaleLabel: {
+                display: false,
+              },
+            }],
+            y: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'IMC',
+              },
+              ticks: {
+                min: 10,
+                max: 40,
+              },
+            }],
+          },
+        };
+
+        var ctx = document.getElementById("line-chart").getContext("2d");
+        myLineChart = new Chart(ctx, {
+          type: 'line',
+          data: data,
+          options: options
+        });
+      }
+
+      // Função para calcular IMC
+      function calcularIMC() {
+        var peso = parseFloat(document.getElementById("peso").value);
+        var altura = parseFloat(document.getElementById("altura").value);
+
+        if (!isNaN(peso) && !isNaN(altura)) {
+          var imc = peso / (altura * altura);
+
+          var resultadoIMC = document.getElementById("resultado-imc");
+          resultadoIMC.innerHTML = "Seu IMC é: " + imc.toFixed(2) + " (" + classificarIMC(imc) + ")";
+
+          imcData.push(imc);
+          myLineChart.data.labels.push((imcData.length).toString());
+          myLineChart.data.datasets[0].data = imcData;
+          myLineChart.update();
+
+          salvarIMC(imc);
+        } else {
+          alert("Por favor, insira valores válidos para peso e altura.");
+        }
+      }
+
+      initializeChart();
+
+      function salvarIMC(imc) {
+        var imcsSalvos = JSON.parse(localStorage.getItem("imcsSalvos")) || [];
+        imcsSalvos.push(imc);
+        localStorage.setItem("imcsSalvos", JSON.stringify(imcsSalvos));
+      }
+
+      function classificarIMC(imc) {
+        if (imc < 18.5) {
+          return "Abaixo do peso";
+        } else if (imc < 24.9) {
+          return "Peso saudável";
+        } else if (imc < 29.9) {
+          return "Sobrepeso";
+        } else if (imc < 34.9) {
+          return "Obesidade Grau I";
+        } else if (imc < 39.9) {
+          return "Obesidade Grau II";
+        } else {
+          return "Obesidade Grau III";
+        }
+      }
+    </script>
+</body>
+
+</html>
